@@ -1,0 +1,54 @@
+/**
+ *
+ * @author Angie T
+ */
+import java.util.Scanner;
+public class Average {
+    private int[] data;
+    private double mean;
+    
+    public Average(){
+        Scanner userInput = new Scanner(System.in);
+        data = new int[5];
+        
+        for(int i = 0; i < data.length; i++){
+            System.out.print("Enter score number " + (i+1) + ": ");
+            data[i] = userInput.nextInt();
+        }
+        selectionSort();
+        calculateMean();
+    }
+    
+    public void calculateMean(){
+        int total = 0;
+        for (int i = 0; i < data.length; i++){
+            total += data[i];
+        }
+        mean = total/data.length;
+    }
+    
+    public String toString(){
+        String str = "\nScores in descending order: ";
+        for(int s : data){
+            str += s + " ";
+        }
+        str += "\nMean: " + mean;
+        return str;
+    }
+    
+    public void selectionSort(){
+        //int highest = data[0];
+        int temp;
+        for(int i = 0; i < data.length-1; i++){
+            int highest = i;
+            for(int j = i + 1; j < data.length; j++){
+                if(data[j] > data[highest]){
+                    highest = j;
+                }
+            }
+            temp = data[highest];
+            data[highest] = data[i];
+            data[i] = temp;
+        }
+    }
+}
